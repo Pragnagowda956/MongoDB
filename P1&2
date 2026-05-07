@@ -1,0 +1,10 @@
+P1
+find, insert, query, delete, update, project
+db.details.insertOne({name:'Amar',rno:5},{name:’Ajay’,rno:10})
+db.details.insert({rno:15, name:'Ravina', dob: ISODate("2019-09-14")})
+db.details.insert([{rno:7,name:'a'},{rno:8,name:'b'},{rno:8,name:'c'}])
+db.details.insert({rno:10,name:'Ankit',hobbies:['singing','cricket','swimming', 
+'music'],age:21})
+db. details.find({},{name:1,_id:0})
+db. details.find({rno:5},{name:1,_id:0})
+db. details.find().limit(2)
