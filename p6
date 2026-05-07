@@ -45,3 +45,8 @@
     "science": 72
   }
 }
+
+
+db.students.aggregate([{$match:{age:{$gte:21}}}])
+db.students.aggregate([{$match:{age:{$gte:21}}},{$group:{_id:"$grade",averageAge:{$avg:"$age"}}},{$sort:{averageAge:-1}},{$project:{_id:0,grade:"$_id",averageAge:1}},{$skip:1}])
+db.students.aggregate([{$match:{age:{$lte:21}}}])
