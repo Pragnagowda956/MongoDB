@@ -1,0 +1,24 @@
+{
+  "listing_url": "http://example.com/listing1",
+  "name": "Beautiful Apartment",
+  "address": {
+    "city": "New York",
+    "country": "USA"
+  },
+  "host": {
+    "host_picture_url": "http://example.com/host1.jpg"
+  }
+}
+
+{
+  "listing_url": "http://example.com/listing2",
+  "name": "Cozy Cottage",
+  "address": {
+    "city": "Austin",
+    "country": "USA"
+  },
+  "host": {
+    "host_picture_url": "http://example.com/host2.jpg"
+  }
+}
+
