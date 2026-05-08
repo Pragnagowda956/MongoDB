@@ -1,0 +1,53 @@
+{
+ "name": "David",
+ "age": 22,
+ "grade": 95,
+ "courses": ["Chemistry", "Biology"]
+ }
+
+ db.students.aggregate([ 
+ { 
+ $group: { 
+ _id: null, 
+ averageGrade: { $avg: "$grade" } 
+ } 
+ } 
+])
+
+db.students.aggregate([ 
+ { 
+ $group: { 
+ _id: null,
+minAge: { $min: "$age" } 
+ } 
+ } 
+])
+
+db.students.aggregate([ 
+ { 
+ $group: { 
+ _id: null, 
+ maxGrade: { $max: "$grade" } 
+ } 
+ } ])
+
+ db.students.aggregate([ 
+ { 
+ $group: { 
+ _id: null, 
+ allNames: { $push: "$name" } 
+ } 
+ } 
+])
+
+db.students.aggregate([ 
+ { 
+ $unwind: "$courses" 
+ }, 
+ { 
+ $group: { 
+ _id: null, 
+ uniqueCourses: { $addToSet: "$courses" } 
+ } 
+ } 
+])
