@@ -22,3 +22,13 @@
   }
 }
 
+
+
+db.listingsAndReviews.aggregate(
+[
+{ $match: { "host.host_picture_url": { $exists: true, $ne: null } } },
+{
+$project: { listing_url: 1, name: 1,
+address: 1, host_picture_url:
+"$host.host_picture_url" }
+}])
