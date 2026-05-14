@@ -1,0 +1,45 @@
+{
+  "product_id": 1,
+  "product_name": "Wireless Mouse",
+  "review_id": 101,
+  "review_text": "Great mouse, very responsive.",
+  "rating": 5
+}
+
+
+{
+  "product_id": 1,
+  "product_name": "Wireless Mouse",
+  "review_id": 102,
+  "review_text": "Good value for the price.",
+  "rating": 4
+}
+
+{
+  "product_id": 2,
+  "product_name": "Bluetooth Keyboard",
+  "review_id": 202,
+  "review_text": "Compact and portable.",
+  "rating": 4
+}
+
+{
+  "product_id": 3,
+  "product_name": "USB-C Hub",
+  "review_id": 302,
+  "review_text": "Works well with my laptop.",
+  "rating": 5
+}
+
+
+db.reviews.aggregate([
+{$group: { _id: "$product_id", product_name: { $first: "$product_name" },
+total_reviews: { $sum: 1 },
+average_rating: { $avg: "$rating" }, 
+latest_reviews: { $push: { review_id: "$review_id", review_text: "$review_text", rating: "$rating",
+}}}}, {$project: { product_id: "$_id",
+product_name: 1, total_reviews: 1, average_rating: "$average_rating",
+latest_reviews: { $slice: ["$latest_reviews", -3] // Adjust the number of latest reviews as needed
+}}},
+{$sort: { total_reviews: -1 } // Sort by total reviews in descending order
+}])
